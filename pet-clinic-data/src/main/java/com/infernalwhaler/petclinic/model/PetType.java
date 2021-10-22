@@ -6,7 +6,7 @@ package com.infernalwhaler.petclinic.model;
  * @date 22/10/2021
  */
 
-public class PetType {
+public class PetType extends BaseEntity {
 
     private String name;
 
