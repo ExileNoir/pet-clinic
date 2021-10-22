@@ -49,7 +49,6 @@
         <developerConnection>
             scm:git:https://github.com/ExileNoir/pet-clinic.git
         </developerConnection>
-    <tag>HEAD</tag>
   </scm>
 
 </project>
