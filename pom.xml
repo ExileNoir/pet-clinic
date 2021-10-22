@@ -46,7 +46,7 @@
 
     <scm>
         <developerConnection>
-            scm:git:git@github.com:ExileNoir/pet-clinic.git
+            https:git:git@github.com:ExileNoir/pet-clinic.git
         </developerConnection>
       <tag>pet-clinic-0.0.1</tag>
   </scm>
