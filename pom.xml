@@ -39,6 +39,7 @@
                 <version>2.5.3</version>
                 <configuration>
                     <goals>install</goals>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
                 </configuration>
             </plugin>
         </plugins>
@@ -46,9 +47,8 @@
 
     <scm>
         <developerConnection>
-            http:git:https://github.com/ExileNoir/pet-clinic.git
+            scm:git:https://github.com/ExileNoir/pet-clinic.git
         </developerConnection>
-    <tag>pet-clinic-0.0.3</tag>
   </scm>
 
 </project>
