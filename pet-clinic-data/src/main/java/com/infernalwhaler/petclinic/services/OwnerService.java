@@ -10,13 +10,7 @@ import java.util.Set;
  * @date 22/10/2021
  */
 
-public interface OwnerService {
+public interface OwnerService extends CrudService<Owner, Long> {
 
     Owner findByLastName(final String lastName);
-
-    Owner findById(final Long id);
-
-    Owner save(final Owner owner);
-
-    Set<Owner> findAll();
 }
