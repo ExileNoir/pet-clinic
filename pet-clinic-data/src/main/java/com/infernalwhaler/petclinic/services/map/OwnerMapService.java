@@ -2,6 +2,7 @@ package com.infernalwhaler.petclinic.services.map;
 
 import com.infernalwhaler.petclinic.model.Owner;
 import com.infernalwhaler.petclinic.services.OwnerService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
@@ -11,6 +12,7 @@ import java.util.Set;
  * @date 25/10/2021
  */
 
+@Service
 public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
 
     @Override

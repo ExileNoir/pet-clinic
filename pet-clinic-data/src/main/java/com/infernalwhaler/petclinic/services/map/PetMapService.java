@@ -2,6 +2,7 @@ package com.infernalwhaler.petclinic.services.map;
 
 import com.infernalwhaler.petclinic.model.Pet;
 import com.infernalwhaler.petclinic.services.PetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
@@ -11,6 +12,7 @@ import java.util.Set;
  * @date 26/10/2021
  */
 
+@Service
 public class PetMapService extends AbstractMapService<Pet, Long> implements PetService {
 
     @Override
