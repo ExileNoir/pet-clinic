@@ -1,9 +1,14 @@
 package com.infernalwhaler.petclinic.services.map;
 
 import com.infernalwhaler.petclinic.model.Owner;
+import com.infernalwhaler.petclinic.model.Pet;
 import com.infernalwhaler.petclinic.services.OwnerService;
+import com.infernalwhaler.petclinic.services.PetService;
+import com.infernalwhaler.petclinic.services.PetTypeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -14,6 +19,16 @@ import java.util.Set;
 
 @Service
 public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
+
+    private final PetTypeService petTypeService;
+    private final PetService petService;
+
+    @Autowired
+    public OwnerMapService(PetTypeService petTypeService, PetService petService) {
+        this.petTypeService = petTypeService;
+        this.petService = petService;
+    }
+
 
     @Override
     public Set<Owner> findAll() {
@@ -27,7 +42,27 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
 
     @Override
     public Owner save(final Owner owner) {
-        return super.save(owner);
+        if (Objects.nonNull(owner)) {
+            if (Objects.nonNull(owner.getPets())) {
+                owner.getPets().forEach(pet -> {
+                    if (Objects.nonNull(pet.getPetType())) {
+                        if (Objects.isNull(pet.getPetType().getId())) {
+                            pet.setPetType(petTypeService.save(pet.getPetType()));
+                        }
+                    } else {
+                        throw new RuntimeException("Pet Type is Required!");
+                    }
+
+                    if (Objects.isNull(pet.getId())) {
+                        final Pet savedPet = petService.save(pet);
+                        pet.setId(savedPet.getId());
+                    }
+                });
+            }
+            return super.save(owner);
+        } else {
+            return null;
+        }
     }
 
     @Override

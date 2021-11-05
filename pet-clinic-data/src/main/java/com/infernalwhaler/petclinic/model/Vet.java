@@ -1,5 +1,6 @@
 package com.infernalwhaler.petclinic.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Set;
 
 public class Vet extends Owner {
 
-    private Set<Speciality> specialities;
+    private Set<Speciality> specialities = new HashSet<>();
 
 
     public Set<Speciality> getSpecialities() {

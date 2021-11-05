@@ -1,6 +1,7 @@
 package com.infernalwhaler.petclinic.bootstrap;
 
 import com.infernalwhaler.petclinic.model.Owner;
+import com.infernalwhaler.petclinic.model.Pet;
 import com.infernalwhaler.petclinic.model.PetType;
 import com.infernalwhaler.petclinic.model.Vet;
 import com.infernalwhaler.petclinic.services.OwnerService;
@@ -9,6 +10,8 @@ import com.infernalwhaler.petclinic.services.VetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 import static java.lang.System.out;
 
@@ -35,9 +38,26 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        final Owner owner01 = getOwner("Michael", "Weston");
+        final PetType dog = getPetType("Dog");
+        final PetType savedDogPetType = petTypeService.save(dog);
+
+        final PetType cat = getPetType("Cat");
+        final PetType savedCatPetType = petTypeService.save(cat);
+
+        out.println("Loaded PetTypes...");
+
+        final Owner owner01 =
+                getOwner("Michael", "Weston", "123 Brickerel", "Miami", "123456");
+
+        createPet(savedDogPetType, owner01, "Rosco");
+
         ownerService.save(owner01);
-        final Owner owner02 = getOwner("Fiona", "Glennane");
+
+        final Owner owner02 =
+                getOwner("Fiona", "Glennane", "123 Mulholland D", "Miami", "987456");
+
+        createPet(savedCatPetType, owner02, "Felix");
+
         ownerService.save(owner02);
 
         out.println("Loaded Owners...");
@@ -48,28 +68,33 @@ public class DataLoader implements CommandLineRunner {
         vetService.save(vet02);
 
         out.println("Loaded Vets...");
-
-        final PetType dog = getPetType("Dog");
-        final PetType savedDogPetType = petTypeService.save(dog);
-
-        final PetType cat = getPetType("Cat");
-        final PetType savedCatPetType = petTypeService.save(cat);
-
-        out.println("Loaded PetTypes...");
     }
 
-    private Owner getOwner(final String firstName, final String lastName) {
-        final Owner owner01 = new Owner();
-        owner01.setFirstName(firstName);
-        owner01.setLastName(lastName);
-        return owner01;
+    private void createPet(final PetType savedDogPetType,final Owner owner01, String rosco) {
+        final Pet mikesDog = new Pet();
+        mikesDog.setPetType(savedDogPetType);
+        mikesDog.setOwner(owner01);
+        mikesDog.setBirthDate(LocalDate.now());
+        mikesDog.setName(rosco);
+        owner01.getPets().add(mikesDog);
+    }
+
+    private Owner getOwner(final String firstName, final String lastName,
+                           final String address, final String city, final String telephone) {
+        final Owner owner = new Owner();
+        owner.setFirstName(firstName);
+        owner.setLastName(lastName);
+        owner.setAddress(address);
+        owner.setCity(city);
+        owner.setTelephone(telephone);
+        return owner;
     }
 
     private Vet getVet(final String firstName, final String lastName) {
-        final Vet vet01 = new Vet();
-        vet01.setFirstName(firstName);
-        vet01.setLastName(lastName);
-        return vet01;
+        final Vet vet = new Vet();
+        vet.setFirstName(firstName);
+        vet.setLastName(lastName);
+        return vet;
     }
 
     private PetType getPetType(final String type) {
