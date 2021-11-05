@@ -6,14 +6,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 /**
  * @author sDeseure
  * @project pet-clinic
  * @date 27/10/2021
  */
 
-@RequestMapping("/owners")
 @Controller
+@RequestMapping("/owners")
 public class OwnerController {
 
     private final OwnerService ownerService;
