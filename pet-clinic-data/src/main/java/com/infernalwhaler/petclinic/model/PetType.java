@@ -1,6 +1,8 @@
 package com.infernalwhaler.petclinic.model;
 
 /**
+ * Simple JavaBean domain object representing a Pet Type.
+ *
  * @author sDeseure
  * @project pet-clinic
  * @date 22/10/2021
