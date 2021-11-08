@@ -8,7 +8,7 @@ import com.infernalwhaler.petclinic.model.Speciality;
  * @date 8/11/2021
  */
 
-public interface SpecialitiesService extends CrudService<Speciality,Long> {
+public interface SpecialityService extends CrudService<Speciality,Long> {
 
 
 }

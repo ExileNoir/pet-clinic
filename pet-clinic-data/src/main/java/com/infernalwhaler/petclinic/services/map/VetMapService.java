@@ -1,9 +1,13 @@
 package com.infernalwhaler.petclinic.services.map;
 
+import com.infernalwhaler.petclinic.model.Speciality;
 import com.infernalwhaler.petclinic.model.Vet;
+import com.infernalwhaler.petclinic.services.SpecialityService;
 import com.infernalwhaler.petclinic.services.VetService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -14,6 +18,14 @@ import java.util.Set;
 
 @Service
 public class VetMapService extends AbstractMapService<Vet, Long> implements VetService {
+
+    private final SpecialityService specialityService;
+
+    @Autowired
+    public VetMapService(SpecialityService specialityService) {
+        this.specialityService = specialityService;
+    }
+
 
     @Override
     public Set<Vet> findAll() {
@@ -27,6 +39,14 @@ public class VetMapService extends AbstractMapService<Vet, Long> implements VetS
 
     @Override
     public Vet save(final Vet vet) {
+        if (!vet.getSpecialities().isEmpty()) {
+            vet.getSpecialities().forEach(speciality -> {
+                if (Objects.isNull(speciality.getId())) {
+                    final Speciality savedSpecialty = specialityService.save(speciality);
+                    speciality.setId(savedSpecialty.getId());
+                }
+            });
+        }
         return super.save(vet);
     }
 
