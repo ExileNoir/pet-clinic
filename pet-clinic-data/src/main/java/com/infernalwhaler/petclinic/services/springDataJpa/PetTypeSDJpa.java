@@ -48,11 +48,11 @@ public class PetTypeSDJpa implements PetTypeService {
 
     @Override
     public void delete(final PetType petType) {
-        delete(petType);
+        petTypeRepository.delete(petType);
     }
 
     @Override
     public void deleteById(final Long id) {
-        deleteById(id);
+        petTypeRepository.deleteById(id);
     }
 }

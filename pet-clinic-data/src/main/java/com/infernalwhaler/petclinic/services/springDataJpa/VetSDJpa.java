@@ -22,10 +22,12 @@ public class VetSDJpa implements VetService {
 
     private final VetRepository vetRepository;
 
+
     @Autowired
     public VetSDJpa(VetRepository vetRepository) {
         this.vetRepository = vetRepository;
     }
+
 
     @Override
     public Set<Vet> findAll() {
@@ -48,11 +50,11 @@ public class VetSDJpa implements VetService {
 
     @Override
     public void delete(final Vet vet) {
-        delete(vet);
+        vetRepository.delete(vet);
     }
 
     @Override
     public void deleteById(final Long id) {
-        deleteById(id);
+        vetRepository.deleteById(id);
     }
 }
