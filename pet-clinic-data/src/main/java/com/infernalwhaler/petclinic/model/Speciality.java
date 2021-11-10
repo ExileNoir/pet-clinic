@@ -1,5 +1,9 @@
 package com.infernalwhaler.petclinic.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * Simple JavaBean domain object representing a Speciality.
  *
@@ -8,8 +12,11 @@ package com.infernalwhaler.petclinic.model;
  * @date 5/11/2021
  */
 
+@Entity
+@Table(name = "specialities")
 public class Speciality extends BaseEntity {
 
+    @Column(name = "description")
     private String description;
 
 
