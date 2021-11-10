@@ -17,13 +17,13 @@ import java.util.Set;
  */
 @Service
 @Profile("springdatajpa")
-public class SpecialitySDJpa implements SpecialityService {
+public class SpecialitySDJpaService implements SpecialityService {
 
     private final SpecialityRepository specialityRepository;
 
 
     @Autowired
-    public SpecialitySDJpa(SpecialityRepository specialityRepository) {
+    public SpecialitySDJpaService(SpecialityRepository specialityRepository) {
         this.specialityRepository = specialityRepository;
     }
 

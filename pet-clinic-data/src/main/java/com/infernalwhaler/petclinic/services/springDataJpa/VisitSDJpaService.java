@@ -18,13 +18,13 @@ import java.util.Set;
 
 @Service
 @Profile("springdatajpa")
-public class VisitSDJpa implements VisitService {
+public class VisitSDJpaService implements VisitService {
 
     private final VisitRepository visitRepository;
 
 
     @Autowired
-    public VisitSDJpa(VisitRepository visitRepository) {
+    public VisitSDJpaService(VisitRepository visitRepository) {
         this.visitRepository = visitRepository;
     }
 

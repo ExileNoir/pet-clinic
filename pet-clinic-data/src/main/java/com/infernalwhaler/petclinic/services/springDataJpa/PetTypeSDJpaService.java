@@ -18,12 +18,12 @@ import java.util.Set;
 
 @Service
 @Profile("springdatajpa")
-public class PetTypeSDJpa implements PetTypeService {
+public class PetTypeSDJpaService implements PetTypeService {
 
     private final PetTypeRepository petTypeRepository;
 
     @Autowired
-    public PetTypeSDJpa(PetTypeRepository petTypeRepository) {
+    public PetTypeSDJpaService(PetTypeRepository petTypeRepository) {
         this.petTypeRepository = petTypeRepository;
     }
 

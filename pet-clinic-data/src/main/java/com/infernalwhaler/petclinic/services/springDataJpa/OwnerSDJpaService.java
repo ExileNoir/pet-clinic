@@ -18,13 +18,13 @@ import java.util.Set;
 
 @Service
 @Profile("springdatajpa")
-public class OwnerSDJpa implements OwnerService {
+public class OwnerSDJpaService implements OwnerService {
 
     private final OwnerRepository ownerRepository;
 
 
     @Autowired
-    public OwnerSDJpa(OwnerRepository ownerRepository) {
+    public OwnerSDJpaService(OwnerRepository ownerRepository) {
         this.ownerRepository = ownerRepository;
     }
 
